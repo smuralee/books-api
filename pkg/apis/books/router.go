@@ -3,7 +3,6 @@ package books
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"log"
 	"net/http"
 	"os"
 	v1 "smuralee.com/books-api/pkg/apis/books/v1"
@@ -24,14 +23,11 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func CatalogHandler() {
-	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/", welcome)
-	myRouter.HandleFunc("/books/v1", v1.GetAllBooks).Methods("GET")
-	myRouter.HandleFunc("/books/v1/{id}", v1.GetBookById).Methods("GET")
-	myRouter.HandleFunc("/books/v1/", v1.CreateBook).Methods("POST")
-	myRouter.HandleFunc("/books/v1/{id}", v1.UpdateBook).Methods("PUT")
-	myRouter.HandleFunc("/books/v1/{id}", v1.DeleteBook).Methods("DELETE")
-
-	log.Fatal(http.ListenAndServe(":8080", myRouter))
+func Handler(router *mux.Router) {
+	router.HandleFunc("/", welcome)
+	router.HandleFunc("/books/v1", v1.GetAllBooks).Methods("GET")
+	router.HandleFunc("/books/v1/{id}", v1.GetBookById).Methods("GET")
+	router.HandleFunc("/books/v1/", v1.CreateBook).Methods("POST")
+	router.HandleFunc("/books/v1/{id}", v1.UpdateBook).Methods("PUT")
+	router.HandleFunc("/books/v1/{id}", v1.DeleteBook).Methods("DELETE")
 }
