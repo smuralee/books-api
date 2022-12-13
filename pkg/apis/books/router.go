@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"net/http"
-	"os"
 	v1 "smuralee.com/books-api/pkg/apis/books/v1"
 )
 
@@ -15,7 +14,6 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 
 	response.Status = "Success"
 	response.RemoteAddress = r.RemoteAddr
-	response.Hostname, _ = os.Hostname()
 
 	err := json.NewEncoder(w).Encode(response)
 	if err != nil {
