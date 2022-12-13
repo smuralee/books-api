@@ -1,4 +1,4 @@
-package external
+package mock
 
 import (
 	"fmt"
@@ -27,5 +27,5 @@ func getHttpStatus(w http.ResponseWriter, r *http.Request) {
 }
 
 func Handler(router *mux.Router) {
-	router.HandleFunc("/external", getHttpStatus).Methods("GET")
+	router.HandleFunc("/mock", getHttpStatus).Methods("GET")
 }
