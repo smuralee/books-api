@@ -17,7 +17,7 @@ func getHttpStatus(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("Fetching the response for status code - %d ...\n", randomCode)
 
-	resp, err := http.Get("https://fetch.mock.status/" + strconv.Itoa(randomCode))
+	resp, err := http.Get("https://httpstat.us/" + strconv.Itoa(randomCode))
 	if err != nil {
 		panic(err)
 	}

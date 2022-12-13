@@ -13,7 +13,7 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	response.Status = "Success"
-	response.RemoteAddress = r.RemoteAddr
+	response.Message = "Health check is successful"
 
 	err := json.NewEncoder(w).Encode(response)
 	if err != nil {
