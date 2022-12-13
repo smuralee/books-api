@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"net/http"
-	"os"
 	v1 "smuralee.com/books-api/pkg/apis/books/v1"
 )
 
@@ -14,8 +13,7 @@ func welcome(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	response.Status = "Success"
-	response.RemoteAddress = r.RemoteAddr
-	response.Hostname, _ = os.Hostname()
+	response.Message = "Health check is successful"
 
 	err := json.NewEncoder(w).Encode(response)
 	if err != nil {
